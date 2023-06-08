@@ -2,7 +2,7 @@ FROM golang:1.20.5
 
 LABEL org.opencontainers.image.source=https://github.com/gihyodocker/echo
 
-WORKDIR /go/src/github.com/gihyodocker/echo
-COPY main.go . 
+RUN mkdir -p /go/src/github.com/gihyodocker/echo
+COPY main.go /go/src/github.com/gihyodocker/echo
 
-CMD ["go", "run", "main.go"]
+CMD ["go", "run", "/go/src/github.com/gihyodocker/echo/main.go"]
