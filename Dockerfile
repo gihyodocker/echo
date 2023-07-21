@@ -6,6 +6,4 @@ WORKDIR /go/src/github.com/gihyodocker/echo
 COPY main.go .
 RUN go mod init
 
-RUN echo "patched!" > /tmp/patched
-
 CMD ["go", "run", "main.go"]
