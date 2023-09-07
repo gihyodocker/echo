@@ -34,9 +34,27 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/build-push-action@v4
+      - name: Build and push plain image
+        uses: docker/build-push-action@v4
         with:
           context: .
           push: true
+          push: false 
           platforms: linux/amd64,linux/arm64
           tags: ${{ env.CONTAINER_REGISTRY }}/${{ github.repository }}:${{ env.IMAGE_VERSION }}
+      - name: Build and push slim image 
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Dockerfile-slim
+          push: true 
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ env.CONTAINER_REGISTRY }}/${{ github.repository }}:${{ env.IMAGE_VERSION }}-slim
+      - name: Build and push debug image 
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Dockerfile-debug
+          push: true 
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ env.CONTAINER_REGISTRY }}/${{ github.repository }}:${{ env.IMAGE_VERSION }}-debug
