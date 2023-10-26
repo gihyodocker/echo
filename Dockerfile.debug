@@ -4,7 +4,7 @@ ARG TARGETARCH
 WORKDIR /go/src/github.com/gihyodocker/echo
 COPY . .
 
-RUN GOARCH=${TARGETARCH} go build -o bin/echo main.go
+RUN GOARCH=${TARGETARCH} CGO_ENABLED=0 go build -o bin/echo main.go
 
 FROM gcr.io/distroless/base-debian11:debug
 LABEL org.opencontainers.image.source=https://github.com/gihyodocker/echo
