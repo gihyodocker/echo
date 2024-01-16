@@ -1,4 +1,4 @@
-FROM golang:1.20.5
+FROM golang:1.21.6
 
 LABEL org.opencontainers.image.source=https://github.com/gihyodocker/echo
 
