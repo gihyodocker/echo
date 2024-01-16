@@ -4,5 +4,7 @@ resources:
 - deployment.yaml
 - ingress.yaml
 - service.yaml
-commonLabels:
-  app.kubernetes.io/name: echo
+labels:
+- includeSelectors: true
+  pairs:
+    app.kubernetes.io/name: echo
